@@ -4,10 +4,18 @@ object Utils {
     fun parseFullName(fullName: String?):Pair<String?, String?>{
         val parts : List<String>? = fullName?.split(" ")
 
-        val firstName= parts?.getOrNull(0)
-        val lastName = parts?.getOrNull(1)
+        var firstName= parts?.getOrNull(0)
+        var lastName = parts?.getOrNull(1)
 
-        //return Pair(firstName, lastName)
+        if (firstName.isNullOrBlank())
+        {
+            firstName = null
+        }
+        if (lastName.isNullOrBlank())
+        {
+            lastName = null
+        }
+
         return firstName to lastName
     }
 
@@ -112,6 +120,8 @@ object Utils {
                 result += cyr2Lat(it)
             }
         }
+
+
         return result
     }
 

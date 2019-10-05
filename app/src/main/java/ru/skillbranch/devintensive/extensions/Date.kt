@@ -55,22 +55,25 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     val deltaHour:Long = deltaMin / 60
     val deltaDay:Long = deltaHour / 24
 
+    //return "Текущая ${date.format()} заданная ${this.format()} [s:${deltaSec}, m:${deltaMin}, h:${deltaHour}, d:${deltaDay}]"
+
     if (deltaDay > 0)
     {
-        when(deltaDay)
-        {
-            in 1..360 -> return "${TimeUnits.DAY.plural(deltaDay.toInt())} назад"
-            else -> return "более года назад"
-        }
+            when (deltaDay) {
+                in 1..360 -> return "${TimeUnits.DAY.plural(deltaDay.toInt())} назад"
+                else -> return "более года назад"
+            }
     }
+
     if (deltaHour > 0)
     {
-        when(deltaHour)
-        {
+        when(deltaHour) {
             in 1..22 -> return "${TimeUnits.HOUR.plural(deltaHour.toInt())} назад"
             else -> return "день назад"
         }
     }
+    else
+
     if (deltaMin > 0)
     {
         when(deltaMin)
@@ -79,6 +82,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
             else -> return "час назад"
         }
     }
+
     if (deltaSec >= 0)
     {
         when(deltaSec)
@@ -88,6 +92,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
             else -> return "минуту назад"
         }
     }
+
     return ""
 }
 
