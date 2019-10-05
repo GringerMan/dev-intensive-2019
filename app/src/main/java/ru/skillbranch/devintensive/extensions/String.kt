@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.extentions
+package ru.skillbranch.devintensive.extensions
 
 fun String.truncate(limit:Int=16):String{
     val current:String? = this
