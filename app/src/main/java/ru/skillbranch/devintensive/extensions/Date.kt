@@ -19,15 +19,15 @@ fun Date.format(pattern:String="HH:mm:ss dd.MM.yy"):String{
 //Date().add(7, TimeUnits.DAY).humanizeDiff() //через 7 дней
 //Date().add(-400, TimeUnits.DAY).humanizeDiff() //более года назад
 //Date().add(400, TimeUnits.DAY).humanizeDiff() //более чем через год
-fun Date.add(value:Int, units: TimeUnit = TimeUnit.SECOND) : Date{
+fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND) : Date{
     var time = this.time
 
     time += when(units)
     {
-        TimeUnit.SECOND -> value * SECONDS
-        TimeUnit.MINUTE -> value * MINUTE
-        TimeUnit.HOUR -> value * HOUR
-        TimeUnit.DAY -> value * DAY
+        TimeUnits.SECOND -> value * SECONDS
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
     }
 
     this.time = time
@@ -59,7 +59,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     {
         when(deltaDay)
         {
-            in 1..360 -> return "${TimeUnit.DAY.plural(deltaDay.toInt())} назад"
+            in 1..360 -> return "${TimeUnits.DAY.plural(deltaDay.toInt())} назад"
             else -> return "более года назад"
         }
     }
@@ -67,7 +67,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     {
         when(deltaHour)
         {
-            in 1..22 -> return "${TimeUnit.HOUR.plural(deltaHour.toInt())} назад"
+            in 1..22 -> return "${TimeUnits.HOUR.plural(deltaHour.toInt())} назад"
             else -> return "день назад"
         }
     }
@@ -75,7 +75,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     {
         when(deltaMin)
         {
-            in 1..24 -> return "${TimeUnit.MINUTE.plural(deltaMin.toInt())} назад"
+            in 1..24 -> return "${TimeUnits.MINUTE.plural(deltaMin.toInt())} назад"
             else -> return "час назад"
         }
     }
@@ -91,7 +91,7 @@ fun Date.humanizeDiff(date: Date = Date()): String{
     return ""
 }
 
-enum class TimeUnit
+enum class TimeUnits
 {
     SECOND
     {
