@@ -100,28 +100,17 @@ object Utils {
     fun transliteration(payload: String, divider:String= " "): String {
         val parts : List<String>? = payload?.split(" ")
 
-        val firstName= parts?.getOrNull(0)
-        val lastName = parts?.getOrNull(1)
-
         var result: String = ""
 
-        if (firstName != null)
-        {
-            firstName.toCharArray().forEach{
+        parts?.forEachIndexed { index, s ->
+            s.toCharArray().forEach{
                 result += cyr2Lat(it)
             }
-
-            result += divider
-        }
-
-        if (lastName != null)
-        {
-            lastName.toCharArray().forEach{
-                result += cyr2Lat(it)
+            if (index < parts?.count() - 1 ?: 0)
+            {
+                result += divider
             }
         }
-
-
         return result
     }
 
