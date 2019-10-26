@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var viewFields: Map<String, TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        //setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
@@ -57,8 +57,6 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
-
-            // tv_nick_name.text = Utils.transliteration("${profile.firstName} ${profile.lastName}", "_")
     }
 
     private fun initViews(savedInstanceState: Bundle?) {

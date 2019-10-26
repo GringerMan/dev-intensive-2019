@@ -1,11 +1,14 @@
 package ru.skillbranch.devintensive.ui.custom
 
 import android.content.Context
+import android.graphics.*
+import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.annotation.Dimension
+import androidx.core.content.ContextCompat
 import ru.skillbranch.devintensive.R
 
 class CircleImageView @JvmOverloads constructor(
@@ -20,6 +23,8 @@ class CircleImageView @JvmOverloads constructor(
 
     private var borderColor = DEFAULT_BORDER_COLOR
     private var borderWidth = DEFAULT_BORDER_WIDTH
+
+    private var mStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     init{
         if (attrs != null){
@@ -46,18 +51,38 @@ class CircleImageView @JvmOverloads constructor(
 
     fun setBorderWidth(@Dimension dp:Int){
         borderWidth = dp
-
+        invalidate()
     }
 
-/*    fun getBorderColor():Int{
+    fun getBorderColor():Int = borderColor
 
-    }
 
     fun setBorderColor(hex:String){
-
+        borderColor = Color.parseColor(hex)
+        invalidate()
     }
 
     fun setBorderColor(@ColorRes colorId: Int){
+        borderColor = ContextCompat.getColor(context, colorId)
+        invalidate()
+    }
+/*
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
 
-    }*/
+        drawBitmap(canvas)
+        drawStroke(canvas)
+    }
+
+    protected fun drawStroke(canvas: Canvas?) {
+        if (mStrokePaint.getStrokeWidth() > 0f) {
+            canvas!!.drawOval(mStrokeBounds, mStrokePaint)
+        }
+    }
+
+    protected fun drawBitmap(canvas: Canvas?) {
+        canvas!!.drawOval(mBitmapDrawBounds, mBitmapPaint)
+    }
+*/
+
 }
